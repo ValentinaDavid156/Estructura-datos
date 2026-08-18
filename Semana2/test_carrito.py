@@ -5,6 +5,9 @@ import pytest
 from carrito_lista import BolsaLista
 from carrito_dict import BolsaDict
 
+class ElementoNoEncontradoError(Exception):
+    pass
+
 # Las MISMAS pruebas corren contra las DOS implementaciones
 @pytest.fixture(params=[BolsaLista, BolsaDict])
 def Bolsa(request):
