@@ -1,7 +1,7 @@
 # Código base — Semana 01
 # Fuente: 01-Momento-1-Contrato-y-secuencia/01-Semana-01-Repaso-y-modelo-de-memoria/02-guia-de-laboratorio.html
 
-from test_hola_estructuras import *
+from Clase1.test_hola_estructuras import *
 
 
 def test_contar():

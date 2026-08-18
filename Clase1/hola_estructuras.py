@@ -9,7 +9,11 @@ def contar(lista):
 
 def suma(lista):
     """Devuelve la suma de los elementos. No uses sum()."""
-    pass
+    total = 0
+    for elemento in lista:
+        total += elemento
+        return total
+    
 
 
 def maximo(lista):
