@@ -17,16 +17,24 @@ class BolsaDict:
         self._total = 0
 
     def agregar(self, elemento):
-        pass
+        self._conteos [elemento] = self._conteos.get(elemento, 0) + 1
+        self._total += 1
 
     def sacar(self, elemento):
-        pass
+        if self._conteos.get (elemento, 0) == 0:
+            raise ElementoNoEncontradoError(
+                f"'{elemento}' no esta en la bolsa"
+            )
+        self._conteos [elemento] -= 1
+        if self._conteos [elemento] == 0:
+            del self._conteos[elemento]
+        self._total -= 1
 
     def cuantos(self, elemento):
-        pass
+        return self._conteos.get(elemento, 0)
 
     def tamaño(self):
-        pass
+        return self._total
 
     def contiene(self, elemento):
-        pass
+        return elemento in self._conteos
