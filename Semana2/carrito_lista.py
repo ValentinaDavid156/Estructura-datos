@@ -20,19 +20,23 @@ class BolsaLista:
         self._elementos = []
 
     def agregar(self, elemento):
-        pass
+        self._elementos.append(elemento)
 
     def sacar(self, elemento):
-        pass
+        if elemento not in self._elementos:
+            raise ElementoNoEncontradoError(
+                f"'{elemento}' no esta en la bolsa"
+            )
+        self._elementos.remove(elemento)
 
     def cuantos(self, elemento):
-        pass
+        return self._elementos.count(elemento)
 
     def tamaño(self):
-        pass
+        return len(self._elementos)
 
     def contiene(self, elemento):
-        pass
+        return elemento in self._elementos
 
     def __len__(self):
         return self.tamaño()
