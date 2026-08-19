@@ -51,3 +51,21 @@ def test_invariante_tamaño(Bolsa):
     for e in ["a", "b", "a", "c", "a"]:
         b.agregar(e)
     assert b.tamaño() == b.cuantos("a") + b.cuantos("b") + b.cuantos("c")
+
+def test_sacar_ultimo_elemento(Bolsa):
+    """CA-04: sacar el último ejemplar de un elemento lo purga de la estructura."""
+    b = Bolsa()
+    b.agregar("pera")
+    b.sacar("pera")
+    assert b.cuantos("pera") == 0
+    with pytest.raises(ElementoNoEncontradoError):
+        b.sacar("pera")
+
+
+def test_contiene_post_eliminacion(Bolsa):
+    """CA-05: contiene() devuelve False para elementos cuyo conteo bajó a 0."""
+    b = Bolsa()
+    b.agregar("uva")
+    assert b.contiene("uva")
+    b.sacar("uva")
+    assert not b.contiene("uva")
