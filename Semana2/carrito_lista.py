@@ -1,9 +1,7 @@
 # Código base — Semana 02
 # Fuente: 01-Momento-1-Contrato-y-secuencia/02-Semana-02-ADT-y-Spec-Driven-Development/02-guia-de-laboratorio.html
 
-class ElementoNoEncontradoError(Exception):
-    """El elemento solicitado no está en la bolsa."""
-
+from carrito_dict import ElementoNoEncontradoError
 
 class BolsaLista:
     """Bolsa implementada sobre una lista: un elemento por cada aparición.
