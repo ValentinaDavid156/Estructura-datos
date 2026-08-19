@@ -1,6 +1,6 @@
 # Código base — Semana 02
 # Fuente: 01-Momento-1-Contrato-y-secuencia/02-Semana-02-ADT-y-Spec-Driven-Development/02-guia-de-laboratorio.html
-
+from carrito_lista import ElementoNoEncontradoError
 class BolsaDict:
     """Bolsa implementada como diccionario de conteos.
 
