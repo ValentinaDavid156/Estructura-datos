@@ -69,3 +69,8 @@ def test_contiene_post_eliminacion(Bolsa):
     assert b.contiene("uva")
     b.sacar("uva")
     assert not b.contiene("uva")
+
+def test_cantidad_cero_para_elemento_nunca_agregado(Bolsa):
+    """CA-06: consultar cuantos() de algo nunca agregado devuelve 0, sin error."""
+    b = Bolsa()
+    assert b.cuantos("fantasma") == 0
