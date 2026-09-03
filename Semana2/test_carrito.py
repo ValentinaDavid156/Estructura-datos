@@ -11,10 +11,9 @@ from carrito_dict import BolsaDict, ElementoNoEncontradoError
 def Bolsa(request):
     return request.param
 
-
+"""CA-01: una bolsa recién creada tiene tamaño 0."""
 def test_bolsa_vacia(Bolsa):
-    """CA-01: una bolsa recién creada tiene tamaño 0."""
-    b = Bolsa()
+     b = Bolsa()
     assert b.tamaño() == 0
     assert not b.contiene("x")
 
