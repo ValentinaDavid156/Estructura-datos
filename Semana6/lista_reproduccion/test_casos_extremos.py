@@ -2,7 +2,7 @@
 # Fuente: 01-Momento-1-Contrato-y-secuencia/06-Semana-06-Listas-enlazadas-simples/02-guia-de-laboratorio.html
 
 import pytest
-from lista_enlazada import ListaEnlazada, PosicionInvalidaError
+from Semana6.lista_reproduccion.lista_enlazada import ListaEnlazada, PosicionInvalidaError
 
 
 def test_insertar_en_vacia_fija_cabeza_y_cola():

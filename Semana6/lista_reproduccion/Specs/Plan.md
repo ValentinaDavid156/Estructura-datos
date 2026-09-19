@@ -74,5 +74,4 @@ comportamiento ante errores sea idéntico entre ambas implementaciones
 | `lista_enlazada.py` | Clase `ListaEnlazada` |
 | `nodos_a_mano.md` | Ejercicio manual de construcción y pérdida de referencias (Parte A) |
 | `test_extremos.py` | Pruebas de los 4 casos límite (Parte C) |
-| `comparacion.py` | Script de medición (Parte D) |
 | `comparacion.md` | Tabla de costos, cálculo del día de emisión y recomendación (Parte D) |

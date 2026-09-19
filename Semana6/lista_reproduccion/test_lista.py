@@ -1,8 +1,8 @@
 # Código base — Semana 06
 # Fuente: 01-Momento-1-Contrato-y-secuencia/06-Semana-06-Listas-enlazadas-simples/02-guia-de-laboratorio.html
 import pytest
-from lista_arreglo import ListaArreglo
-from lista_enlazada import ListaEnlazada
+from Semana6.lista_reproduccion.lista_arreglo import ListaArreglo
+from Semana6.lista_reproduccion.lista_enlazada import ListaEnlazada
 
 # ANTES:  IMPLEMENTACIONES = [ListaArreglo]
 IMPLEMENTACIONES = [ListaArreglo, ListaEnlazada]

@@ -1,7 +1,7 @@
 # Código base — Semana 06
 # Fuente: 01-Momento-1-Contrato-y-secuencia/06-Semana-06-Listas-enlazadas-simples/02-guia-de-laboratorio.html
 
-from nodo import Nodo
+from Semana6.lista_reproduccion.nodo import Nodo
 
 
 class PosicionInvalidaError(IndexError):
