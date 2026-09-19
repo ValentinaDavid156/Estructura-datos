@@ -78,7 +78,23 @@ sobre qué estructura "debería" ser más rápida.
 - Ordenar la lista de reproducción automáticamente.
 - Cualquier interfaz de usuario del reproductor.
 
-## 6. Criterios de finalización
+
+## 6. Criterios de aceptación (heredados del contrato de la Actividad 2)
+ 
+Estos son los criterios que ya traía `test_lista.py`, y que ahora se
+verifican para las dos implementaciones (parámetro `Lista` en cada
+prueba):
+ 
+| ID | Criterio | Prueba | ListaArreglo | ListaEnlazada |
+|---|---|---|---|---|
+| CA-01 | Una lista nueva tiene tamaño 0 | `test_lista_vacia` | Sí | Sí |
+| CA-02 | Insertar en posición 0 en lista vacía deja el elemento accesible | `test_insertar_en_vacia` | Sí | Sí |
+| CA-03 | Insertar al inicio desplaza los existentes sin perder ninguno | `test_insertar_inicio` | Sí | Sí |
+| CA-04 | Eliminar reduce el tamaño en 1 y devuelve el elemento | `test_eliminar` | Sí | Sí |
+| CA-05 | Posición fuera de rango lanza `PosicionInvalidaError` | `test_posicion_invalida` | Sí | Sí |
+| CA-06 | `buscar` devuelve -1 si el elemento no está | `test_buscar_ausente` | Sí | Sí |
+
+## 7. Criterios de finalización
 
 - Los 7 criterios de aceptación heredados del contrato de la Actividad
   2 pasan para ambas implementaciones.
@@ -89,7 +105,7 @@ sobre qué estructura "debería" ser más rápida.
 - Se explica qué tendría que cambiar en las frecuencias de uso para
   que la recomendación cambiara.
 
-## 7. Dudas abiertas
+## 8. Dudas abiertas
 
 - [NECESITA ACLARACIÓN] "Ir a la canción número N": ¿se refiere
   siempre a una posición fija, o a una posición que varía según qué
