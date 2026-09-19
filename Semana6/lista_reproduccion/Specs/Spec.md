@@ -79,11 +79,7 @@ sobre qué estructura "debería" ser más rápida.
 - Cualquier interfaz de usuario del reproductor.
 
 
-## 6. Criterios de aceptación (heredados del contrato de la Actividad 2)
- 
-Estos son los criterios que ya traía `test_lista.py`, y que ahora se
-verifican para las dos implementaciones (parámetro `Lista` en cada
-prueba):
+## 6. Criterios de aceptación 
  
 | ID | Criterio | Prueba | ListaArreglo | ListaEnlazada |
 |---|---|---|---|---|

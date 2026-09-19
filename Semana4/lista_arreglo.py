@@ -31,27 +31,21 @@ class ListaArreglo:
     def __init__(self):
         self._capacidad = self.CAPACIDAD_INICIAL
         self._datos = [None] * self._capacidad
-        self._datos[0] = 9
-        self._datos[1] = 98
-        self._datos[2] = 0
-        self._datos[3] = 0
+        self._tamaño = 0
         
 
 
     # ---------- operaciones públicas ----------
 
     def tamaño(self):
-        contador = 0
-        while self._datos[contador]:
-            contador = contador + 1
-        self._tamaño = contador
-        return contador
+        return self._tamaño
 
 
-    def obtener(self, posicion):
+def obtener(self, posicion):
         """Devuelve el elemento en `posicion`. O(1)."""
         self._validar(posicion, incluir_final=False)
-        pass
+        self._validar(posicion, incluir_final=False)
+        return self._datos[posicion]
 
     def insertar(self, posicion, elemento):
         """Inserta desplazando los elementos siguientes hacia la derecha."""
