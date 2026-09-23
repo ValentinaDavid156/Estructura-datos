@@ -47,7 +47,22 @@ class ListadoblementeEnlazada:
                     print(f"Estado actual: {self.actual.dato}")
               else:
                     print("Lista vacía o no hay estado actual.")
-                        
-                    
-                  
+
+if __name__ == "__main__":
+    lista = ListadoblementeEnlazada()
+
+    lista.insertar("Paso 1")
+    lista.insertar("Paso 2")
+    lista.insertar("Paso 3")
+
+    lista.mostrar_estado()
+
+    print("\n--- Deshaciendo ---")
+    lista.deshacer()
+    lista.deshacer()
+
+    print("\n--- Rehaciendo ---")
+    lista.rehacer()
+
+    lista.mostrar_estado()            
                  
