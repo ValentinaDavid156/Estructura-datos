@@ -17,7 +17,7 @@ final requeriría recorrer toda la lista para encontrar el último nodo
 (O(n)). Con `_cola`, insertar al final es O(1): se accede directo al
 último nodo sin recorrer nada.
 
-## 2. Orden de reconexión de nodos
+## 2. Orden de reconexión de nodo
 
 Al insertar o eliminar en el medio de la lista, los enlaces se
 reasignan en un orden específico para no perder referencias:

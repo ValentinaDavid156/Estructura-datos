@@ -44,7 +44,6 @@ class ListaArreglo:
 def obtener(self, posicion):
         """Devuelve el elemento en `posicion`. O(1)."""
         self._validar(posicion, incluir_final=False)
-        self._validar(posicion, incluir_final=False)
         return self._datos[posicion]
 
     def insertar(self, posicion, elemento):
@@ -61,7 +60,7 @@ def obtener(self, posicion):
     
         self._datos[posicion] = elemento
         self._tamaño += 1
-
+                        
     def eliminar(self, posicion):
         """Elimina y devuelve el elemento, desplazando los siguientes."""
         self._validar(posicion, incluir_final=False)
@@ -70,7 +69,7 @@ def obtener(self, posicion):
         i = posicion  
         while i < self._tamaño - 1:
          self._datos[i] = self._datos[i + 1]  
-         i = i + 1  
+         i = i + 1                                                 
     
          self._tamaño -= 1
         return elemento
