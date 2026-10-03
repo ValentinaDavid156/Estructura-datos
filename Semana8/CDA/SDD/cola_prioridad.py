@@ -25,6 +25,14 @@ class ColaPrioridad:
         self._elementos.append((prioridad, self._contador, dato))
         self._contador += 1
 
+    def _indice_minimo(self):
+        """Índice del elemento con menor (prioridad, orden). O(n)."""
+        menor = 0
+        for i in range(1, len(self._elementos)):
+            if self._elementos[i][:2] < self._elementos[menor][:2]:
+                menor = i
+        return menor
+
     def desencolar(self):
         """Devuelve el dato de menor prioridad. O(n)."""
         if self.esta_vacia():
@@ -40,11 +48,10 @@ class ColaPrioridad:
     def __len__(self):
         return len(self._elementos)
 
-    def __len__(self):
-        return len(self._elementos)
-
-
 # --- pruebas ---
+
+import pytest
+
 def test_orden_por_prioridad():
     cp = ColaPrioridad()
     cp.encolar("urgente", 1)
