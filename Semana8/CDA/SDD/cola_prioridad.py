@@ -22,16 +22,23 @@ class ColaPrioridad:
         return len(self._elementos) == 0
 
     def encolar(self, dato, prioridad):
-        pass
+        self._elementos.append((prioridad, self._contador, dato))
+        self._contador += 1
 
     def desencolar(self):
         """Devuelve el dato de menor prioridad. O(n)."""
         if self.esta_vacia():
             raise ColaVaciaError("desencolar sobre cola vacía")
-        pass
+        return self._elementos.pop(self._indice_minimo())[2]
 
     def frente(self):
-        pass
+        """Devuelve (sin quitar) el dato de menor prioridad. O(n)."""
+        if self.esta_vacia():
+            raise ColaVaciaError("frente sobre cola vacía")
+        return self._elementos[self._indice_minimo()][2]
+ 
+    def __len__(self):
+        return len(self._elementos)
 
     def __len__(self):
         return len(self._elementos)
