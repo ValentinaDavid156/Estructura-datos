@@ -1,6 +1,7 @@
 # Código base — Semana 09
 # Fuente: 02-Momento-2-Disciplina-y-jerarquia/09-Semana-09-Colas/02-guia-de-laboratorio.html
-
+class ColaVaciaError(Exception):
+    """Se lanza al consultar o desencolar sobre una cola vacía."""
 class ColaPrioridad:
     """Cola donde sale primero el elemento de MENOR prioridad numérica.
 
