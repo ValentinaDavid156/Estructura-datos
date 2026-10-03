@@ -70,3 +70,22 @@ def test_empate_es_fifo():
     cp.encolar("segundo", 3)
     assert cp.desencolar() == "primero"
     assert cp.desencolar() == "segundo"
+
+def test_cola_vacia_lanza_error():
+    cp = ColaPrioridad()
+    with pytest.raises(ColaVaciaError):
+        cp.desencolar()
+    with pytest.raises(ColaVaciaError):
+        cp.frente()
+
+def test_frente_no_modifica_la_cola():
+    cp = ColaPrioridad()
+    cp.encolar("a", 2)
+    assert cp.frente() == "a"
+    assert len(cp) == 1
+
+def test_un_solo_elemento():
+    cp = ColaPrioridad()
+    cp.encolar("unico", 4)
+    assert cp.desencolar() == "unico"
+    assert cp.esta_vacia()
