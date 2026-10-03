@@ -137,3 +137,28 @@ T03.5: Probar un escenario completo de principio a fin: registrar, consultar, at
 T04.1: Revisar que `spec.md`, `plan.md`, `task.md` y `constitucion.md` sean consistentes entre sí.
 
 T04.2: Completar la bitácora de interacción con la IA con todas las sesiones de trabajo.
+
+
+---
+
+## Cronograma de tareas (Semana 9)
+
+Cada bloque agrupa las tareas detalladas de las fases anteriores. Ninguno pasa de 8 h. Los IDs coinciden con la tabla de `plan.md` sección 9. Las tareas marcadas con * están en la ruta crítica (holgura cero).
+
+| ID | Bloque | Tareas incluidas | Horas | Depende de |
+|---|---|---|---|---|
+| F0 * | Documentación SDD | T00.1 – T00.7 | 6 h | — |
+| T1.1 * | Modelo de datos + validaciones | T01.1 – T01.7 | 3 h | F0 |
+| T1.2 * | Lista ordenada + consultar/atender | T01.8 – T01.12 | 4 h | T1.1 |
+| T1.3 | Máquina de estados | T01.13 – T01.16 | 2 h | T1.1 |
+| T1.4 * | Aceleración de prioridad | T01.17 – T01.20 | 3 h | T1.2 |
+| T1.5 | Consultas (resumen, detalle, mostrar_cola) | T01.21 – T01.23 | 2 h | T1.2, T1.3 |
+| T1.6 * | Pruebas del dominio | T01.24 – T01.29 | 3 h | T1.4, T1.5 |
+| T2.1 * | Setup FastAPI + modelos Pydantic | T02.1 – T02.3 | 2 h | T1.6 |
+| T2.2 * | Endpoints de escritura | T02.4, T02.6, T02.7, T02.8 | 4 h | T2.1 |
+| T2.3 | Endpoints de lectura | T02.5, T02.9, T02.10, T02.11 | 3 h | T2.1 |
+| T3 * | Pruebas E2E del API | T03.1 – T03.5 | 4 h | T2.2, T2.3 |
+| T4 * | Revisión de consistencia + bitácora | T04.1 – T04.2 | 2 h | T3 |
+
+**Ruta crítica:** F0 → T1.1 → T1.2 → T1.4 → T1.6 → T2.1 → T2.2 → T3 → T4 = **31 h**.
+**Holgura:** T1.3 tiene 3 h y T2.3 tiene 1 h (detalle en `plan.md` sección 9.4).
