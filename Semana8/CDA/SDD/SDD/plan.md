@@ -114,7 +114,21 @@ Con una lista ordenada, este mecanismo mueve dos cosas a la vez: el campo `prior
 ### Qué pasaría mal si se hiciera en otro orden
 
 - Si se reordenara la lista turno por turno, en medio de la revisión, la lista quedaría en un estado a medias (unos turnos ya con su prioridad nueva reflejada en su posición, otros no), y `consultar_siguiente()` podría devolver temporalmente al turno equivocado.
+
 - Si se actualizara el campo `prioridad` sin nunca reordenar la lista, la lista seguiría ordenada según los valores **viejos** (el cambio del dato no reacomoda la lista solo), rompiendo la regla de que "la prioridad es la única ley del orden" (Artículo I de la constitución).
 - Por eso: **primero calcular todo, luego actualizar todo, y al final reordenar una sola vez.**
 
 > **Nota importante (RNF5):** esto modifica solo el campo `prioridad`, nunca el campo `estado`. Por eso no contradice la regla de que "mirar no es lo mismo que tocar": los endpoints de solo consulta siguen sin cambiar el `estado` de ningún turno.
+
+## 8. Diseño del API (Fase 2 — después de que cola.py esté listo)
+
+| Método | Ruta | Función | RF / HU |
+| --- | --- | --- | --- |
+| `POST` | `/turnos` | Registrar un turno nuevo | RF1, RF2, RF10, HU-01 |
+| `GET` | `/turnos/siguiente` | Ver quién sigue, sin sacarlo de la cola | RF3, RNF5, HU-02 |
+| `POST` | `/turnos/atender` | Atender al siguiente turno | RF4, HU-02 |
+| `POST` | `/turnos/{id}/finalizar` | Marcar un turno `EN_ATENCION` como `ATENDIDO` | RF5, RF9, HU-07 |
+| `DELETE` | `/turnos/{id}` | Retirar un turno `EN_ESPERA` | RF6, HU-03 |
+| `GET` | `/turnos/resumen` | Conteo de turnos por estado (anónimo) | RF7, RNF4, HU-04 |
+| `GET` | `/turnos` | Listar turnos en espera, ordenados por prioridad | RF8 |
+| `GET` | `/turnos/{id}` | Ver el detalle completo de un turno | HU-06 |
