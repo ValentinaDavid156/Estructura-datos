@@ -86,7 +86,7 @@ Cada elemento registrado tiene:
 
 | RNF | **DESCRIPCIÓN** |
 | --- | --- |
-| RNF1 | Las operaciones de registrar, consultar siguiente y atender deben ejecutarse en tiempo logarítmico (O(log n)) respecto al tamaño de la cola. |
+| RNF1 | Las operaciones de registrar, consultar siguiente y atender deben ejecutarse en tiempo logarítmico (O(n)) respecto al tamaño de la cola. |
 | RNF2 | El API debe responder en formato JSON. |
 | RNF3 | **Cuando un método mueve más de un "puntero" a la vez** (por ejemplo, al sacar un turno de en medio de la cola), hay que explicar en `plan.md` en qué orden se hacen esos cambios y qué pasaría mal si se hicieran en otro orden |
 | RNF4 | El resumen de la cola es anónimo**.** El endpoint que muestra cuántos turnos hay en cada estado (HU-06) nunca muestra nombres ni teléfonos, solo números. |
