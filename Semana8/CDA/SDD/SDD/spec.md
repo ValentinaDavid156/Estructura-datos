@@ -60,6 +60,12 @@ Cada elemento registrado tiene:
 
 **Como** operador, **quiero** consultar el estado y los datos de un elemento por su id, **para** dar seguimiento puntual a un caso.
 
+### HU-07 — Finalizar la atención *(RF5, RF9)*
+**Como** personal médico, **quiero** marcar un turno `EN_ATENCION` como `ATENDIDO`.
+
+- Solo un turno `EN_ATENCION` puede pasar a `ATENDIDO`.
+- Cualquier otro origen (`EN_ESPERA`, `RETIRADO`, `ATENDIDO`) se rechaza con un error explícito (RF9).
+
 ## 5. Requisitos Funcionales (RF)
 
 | ***RF*** | ***DESCRIPCIÓN*** |
@@ -100,9 +106,3 @@ Cada elemento registrado tiene:
 - El sistema expone la cantidad total de elementos `ATENDIDO`. (RF7)
 - El sistema devuelve la lista de elementos `EN_ESPERA`, ordenada primero por prioridad y luego por orden de llegada. (RF8)
 
-### HU-07 — Finalizar la atención *(RF5, RF9)*
-
-**Como** personal médico, **quiero** marcar un turno `EN_ATENCION` como `ATENDIDO`.
-
-- Solo un turno `EN_ATENCION` puede pasar a `ATENDIDO`.
-- Cualquier otro origen (`EN_ESPERA`, `RETIRADO`, `ATENDIDO`) se rechaza con un error explícito (RF9).
