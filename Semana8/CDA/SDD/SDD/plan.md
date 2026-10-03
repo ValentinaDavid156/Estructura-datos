@@ -132,3 +132,73 @@ Con una lista ordenada, este mecanismo mueve dos cosas a la vez: el campo `prior
 | `GET` | `/turnos/resumen` | Conteo de turnos por estado (anónimo) | RF7, RNF4, HU-04 |
 | `GET` | `/turnos` | Listar turnos en espera, ordenados por prioridad | RF8 |
 | `GET` | `/turnos/{id}` | Ver el detalle completo de un turno | HU-06 |
+
+
+## 9. Cronograma, dependencias, ruta crítica y holgura (Semana 9)
+
+Taller formativo. Pone el proyecto contra el calendario usando los
+bloques de trabajo ya definidos en `tasks.md`.
+
+### 9.1 Descomposición en tareas (≤ 8h cada una)
+
+| ID | Tarea | Horas | Depende de |
+|---|---|---|---|
+| F0 | Documentación SDD (constitución, spec, plan) | 6h | — |
+| T1.1 | Modelo de datos + validaciones (RF2, RF10) | 3h | F0 |
+| T1.2 | Lista ordenada + inserción + consultar/atender | 4h | T1.1 |
+| T1.3 | Máquina de estados (transiciones válidas, RF9) | 2h | T1.1 |
+| T1.4 | Aceleración de prioridad (RNF3) | 3h | T1.2 |
+| T1.5 | Consultas (resumen, detalle, mostrar_cola) | 2h | T1.2, T1.3 |
+| T1.6 | Pruebas del dominio (T01.24–29) | 3h | T1.4, T1.5 |
+| T2.1 | Setup FastAPI + modelos Pydantic | 2h | T1.6 |
+| T2.2 | Endpoints de escritura (registrar, atender, finalizar, retirar) | 4h | T2.1 |
+| T2.3 | Endpoints de lectura (siguiente, resumen, listar, detalle) | 3h | T2.1 |
+| T3 | Pruebas E2E del API | 4h | T2.2, T2.3 |
+| T4 | Revisión de consistencia + bitácora final | 2h | T3 |
+
+### 9.2 Dependencias reales vs. dependencias inventadas
+
+- **T1.3 no depende de T1.2.** Ambas solo necesitan T1.1 (el modelo de
+  datos). Son paralelizables; si en la práctica se hacen en secuencia es
+  por ser la misma persona la que programa (límite de recurso), no
+  porque T1.3 necesite algo que produzca T1.2.
+- **T2.3 no depende de T2.2.** Ambas solo necesitan T2.1 (la instancia
+  compartida de `ColaAtencion` y los modelos Pydantic). Igual que el
+  caso anterior, es paralelizable en principio.
+- Todas las demás dependencias de la tabla son reales: cada tarea
+  produce algo que la siguiente necesita para existir (no se puede
+  probar lo que no se ha implementado; no se empieza el API sin que el
+  dominio esté probado, por regla explícita de este `plan.md`).
+
+### 9.3 Ruta crítica
+
+La cadena más larga es:
+
+`F0 → T1.1 → T1.2 → T1.4 → T1.6 → T2.1 → T2.2 → T3 → T4`
+
+Suma: 6 + 3 + 4 + 3 + 3 + 2 + 4 + 4 + 2 = **31 horas**. Esta es la ruta
+crítica: cualquier retraso en una de estas tareas mueve la fecha final
+en la misma cantidad. Sus tareas tienen **holgura cero**.
+
+### 9.4 Holgura
+
+| Rama paralela | Suma hasta reencontrarse con la ruta crítica | Holgura |
+|---|---|---|
+| T1.3 (en vez de T1.2, para llegar a T1.5) | 28h | 3h |
+| T2.3 (en vez de T2.2, para llegar a T3) | 30h | 1h |
+
+### 9.5 Prueba del retraso
+
+- Sumar 4h a **T1.4** (ruta crítica) → el hito final se mueve de 31h a
+  **35h**.
+- Sumar 3h a **T1.3** (3h de holgura) → el hito final **no se mueve**:
+  la holgura absorbe el retraso completo.
+- Sumar 4h a **T1.3** (una más de su holgura) → el hito final se mueve,
+  pero solo **1h** (el excedente sobre la holgura), no las 4h completas.
+
+Conclusión: el mismo retraso cuesta distinto según en qué tarea ocurra.
+
+### 9.6 Diagrama de Gantt
+
+Ver `evidencias/gantt-cda.png`. Barras en naranja: ruta crítica (holgura
+cero). Barras en azul: tareas con holgura (T1.3, T2.3).
