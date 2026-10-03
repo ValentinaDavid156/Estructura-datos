@@ -58,7 +58,7 @@
 
 **T01.13:** Crear una tabla interna de transiciones válidas: `EN_ESPERA→EN_ATENCION`, `EN_ATENCION→ATENDIDO`, `EN_ESPERA→RETIRADO`
 
-**T01.14:** Crear la excepción `TransicionInvalidaError` para cualquier otro intento de cambio de estado
+**T01.14:** Crear la excepción `TransicionInvalidaError` para cualquier otro intento de cambio de estado, Crear la excepción `TurnoNoEncontradoError` para cualquier operación sobre un id que no existe (`obtener_detalle`, `finalizar_atencion`, `retirar`)
 
 **T01.15:** Implementar `finalizar_atencion()` que solo acepte turnos `EN_ATENCION`
 

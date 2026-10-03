@@ -105,4 +105,5 @@ Cada elemento registrado tiene:
 - El sistema expone la cantidad de elementos actualmente `EN_ESPERA`. (HU-04, RF7)
 - El sistema expone la cantidad total de elementos `ATENDIDO`. (RF7)
 - El sistema devuelve la lista de elementos `EN_ESPERA`, ordenada primero por prioridad y luego por orden de llegada. (RF8)
+- Si se consulta, finaliza o retira un id que no existe, el sistema rechaza la operación con un error explícito (TurnoNoEncontradoError). (HU-03, HU-06, RF9)
 
