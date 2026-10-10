@@ -2,7 +2,7 @@
 # Fuente: 01-Momento-1-Contrato-y-secuencia/04-Semana-04-Arreglos-y-estructuras-estaticas/02-guia-de-laboratorio.html
 
 import time
-from lista_arreglo import ListaArreglo
+from Semana4.lista_arreglo import ListaArreglo
 
 N = 20_000
 
