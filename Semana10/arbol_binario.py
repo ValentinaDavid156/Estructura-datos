@@ -1,6 +1,6 @@
 # Código base — Semana 10
 # Fuente: 02-Momento-2-Disciplina-y-jerarquia/10-Semana-10-Arboles-binarios-y-recorridos/02-guia-de-laboratorio.html
-
+from cola import ColaEnlazada
 class NodoArbol:
     """Un nodo con hasta dos hijos."""
 
@@ -101,12 +101,6 @@ class ArbolBinario:
         PRUEBA ESTO: cambia la cola por una pila. ¿Qué recorrido obtienes?
         (Pista: se parece mucho al preorden, pero con los hijos invertidos.)
         """
-        nodo = cola.desencolar()
-        resultado.append(nodo.dato)
-        if nodo.izquierdo is not None:
-                cola.encolar(nodo.izquierdo)
-        if nodo.derecho is not None:
-                cola.encolar(nodo.derecho)
         from cola import ColaEnlazada
 
         if self.esta_vacio():
@@ -116,8 +110,14 @@ class ArbolBinario:
         cola = ColaEnlazada()
         cola.encolar(self.raiz)
         while not cola.esta_vacia():
-            pass    # completa
+            nodo = cola.desencolar()
+            resultado.append(nodo.dato)
+            if nodo.izquierdo is not None:
+                cola.encolar(nodo.izquierdo)
+            if nodo.derecho is not None:
+                cola.encolar(nodo.derecho)
         return resultado
+
 
     def por_niveles_agrupado(self):
         """Como por_niveles, pero devuelve una lista de listas, una por nivel.
