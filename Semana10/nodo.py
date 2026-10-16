@@ -29,23 +29,3 @@ class Nodo:
     def __repr__(self):
         return f"Nodo({self.dato!r})"
 
-class Nodo:
-    def __init__(self, dato, siguiente=None):
-        self.dato = dato
-        self.siguiente = siguiente
-
-# Construye la cadena
-c = Nodo("C")
-b = Nodo("B", c)
-a = Nodo("A", b)
-
-# Ahora observa: ¿cuántas flechas apuntan a cada nodo?
-otro = b            # dos nombres apuntan al mismo nodo
-
-# Desconecta B de la cadena
-a.siguiente = c     # la cadena ahora es A -> C
-
-# ¿Se destruyó el nodo B?
-print(otro.dato)    # sigue existiendo: `otro` lo mantiene vivo
-
-otro = None         # ahora sí: nadie referencia a B, Python lo recolecta
