@@ -59,7 +59,11 @@ class ArbolBinario:
         return resultado
 
     def _inorden(self, nodo, acumulador):
-        pass    # completa: mueve la línea de la visita al medio
+        if nodo is None:                           # completa: mueve la línea de la visita al medio
+            return
+        self._inorden(nodo.izquierdo, acumulador)
+        acumulador.append(nodo.dato)
+        self._inorden(nodo.derecho, acumulador)    
 
     # ---------- POSTORDEN: izquierdo, derecho, raíz ----------
     def postorden(self):
@@ -74,7 +78,11 @@ class ArbolBinario:
         return resultado
 
     def _postorden(self, nodo, acumulador):
-        pass    # completa: mueve la línea de la visita al final
+        if nodo is None:                        # completa: mueve la línea de la visita al final
+            return
+        self._postorden(nodo.izquierdo, acumulador)
+        self._postorden(nodo.derecho, acumulador)
+        acumulador.append(nodo.dato)   
 
     def por_niveles(self):
         """Visita los nodos nivel por nivel, de izquierda a derecha.
@@ -93,6 +101,12 @@ class ArbolBinario:
         PRUEBA ESTO: cambia la cola por una pila. ¿Qué recorrido obtienes?
         (Pista: se parece mucho al preorden, pero con los hijos invertidos.)
         """
+        nodo = cola.desencolar()
+        resultado.append(nodo.dato)
+        if nodo.izquierdo is not None:
+                cola.encolar(nodo.izquierdo)
+        if nodo.derecho is not None:
+                cola.encolar(nodo.derecho)
         from cola import ColaEnlazada
 
         if self.esta_vacio():
@@ -113,7 +127,22 @@ class ArbolBinario:
         Truco: antes de procesar, mira cuántos elementos hay en la cola.
         Esos son exactamente los del nivel actual.
         """
-        pass
+        niveles = []
+        if self.esta_vacio():
+            return niveles
+        cola = ColaEnlazada()
+        cola.encolar(self.raiz)
+        while not cola.esta_vacia():
+            nivel = []
+            for _ in range(cola.tamaño()):      # solo los del nivel actual
+                nodo = cola.desencolar()
+                nivel.append(nodo.dato)
+                if nodo.izquierdo is not None:
+                    cola.encolar(nodo.izquierdo)
+                if nodo.derecho is not None:
+                    cola.encolar(nodo.derecho)
+            niveles.append(nivel)
+        return niveles
 
     def altura(self):
         """Altura del árbol. Vacío = -1, hoja = 0.
@@ -132,18 +161,33 @@ class ArbolBinario:
         return self._contar_nodos(self.raiz)
 
     def _contar_nodos(self, nodo):
-        pass    # patrón: 0 si es None, si no 1 + los de cada subárbol
-
+        if nodo is None:                             # patrón: 0 si es None, si no 1 + los de cada subárbol
+            return 0
+        return 1 + self._contar_nodos(nodo.izquierdo) + self._contar_nodos(nodo.derecho)   
     def contar_hojas(self):
         """Cantidad de nodos sin hijos. O(n)."""
         return self._contar_hojas(self.raiz)
 
-    def _contar_hojas(self, nodo):
-        pass    # cuidado: un nodo con UN hijo NO es hoja
+    def _contar_hojas(self, nodo):       # cuidado: un nodo con UN hijo NO es hoja
+        if nodo is None:
+            return 0
+        if nodo.es_hoja():
+            return 1
+        return self._contar_hojas(nodo.izquierdo) + self._contar_hojas(nodo.derecho)   
 
     def profundidad_de(self, dato):
         """Profundidad del nodo que contiene `dato`, o -1 si no está. O(n)."""
-        pass
+        return self._profundidad_de(self.raiz, dato, 0)
+
+    def _profundidad_de(self, nodo, dato, nivel):
+        if nodo is None:
+            return -1
+        if nodo.dato == dato:
+            return nivel
+        izquierda = self._profundidad_de(nodo.izquierdo, dato, nivel + 1)
+        if izquierda != -1:
+            return izquierda
+        return self._profundidad_de(nodo.derecho, dato, nivel + 1)
 
     def es_perfecto(self):
         """Un árbol es perfecto si todas las hojas están al mismo nivel
@@ -152,4 +196,4 @@ class ArbolBinario:
         Pista: un árbol perfecto de altura h tiene exactamente
         2^(h+1) - 1 nodos.
         """
-        pass
+        return self.contar_nodos() == 2 ** (self.altura() + 1) - 1
