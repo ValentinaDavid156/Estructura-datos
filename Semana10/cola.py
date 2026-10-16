@@ -38,14 +38,16 @@ class ColaCircular:
         if self._tamaño == self._capacidad:
             self._redimensionar(self._capacidad * 2)
         posicion = (self._frente + self._tamaño) % self._capacidad
-        pass    # coloca el elemento y actualiza el tamaño
+        self._datos[posicion] = elemento
+        self._tamaño += 1   # coloca el elemento y actualiza el tamaño
 
     def desencolar(self):
         if self.esta_vacia():
             raise ColaVaciaError("desencolar sobre cola vacía")
         elemento = self._datos[self._frente]
         self._datos[self._frente] = None        # libera la referencia
-        pass    # avanza _frente circularmente y decrementa el tamaño
+        self._frente = (self._frente + 1) % self._capacidad
+        self._tamaño -= 1    # avanza _frente circularmente y decrementa el tamaño
         return elemento
 
     def frente(self):
