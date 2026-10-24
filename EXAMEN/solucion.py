@@ -16,7 +16,7 @@ from estructuras import ListaDoble, ABB
 def quitar_repetidos(lista: ListaDoble) -> int:
     """Quita los datos repetidos: al terminar, cada dato aparece una sola vez en la lista.
     Devuelve cuántos nodos se eliminaron.
-    """"
+    """
 
     #Se conserva la ÚLTIMA aparición de cada dato (contrato).
     #Recorre desde la cola hacia atrás: la primera vez que ve un dato es su
@@ -50,7 +50,7 @@ def posicion_en_ranking(arbol: ABB, k: int):
 
     #Complejidad: O(h + k) tiempo, porque baja por la derecha (h pasos) y
     #visita solo k nodos, sin recorrer todo el árbol. O(h) espacio por la pila.
-    
+
     if k < 1:
         return None
     pila = []
